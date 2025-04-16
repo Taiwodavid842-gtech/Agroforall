@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empower Farmers - Agro For All</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3A5A40;
+            --secondary-color: #588157;
+            --accent-color: #DDA15E;
+            --text-dark: #2F3E46;
+            --text-light: #F8F9FA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Navigation - Consistent with Other Pages */
+        .navbar {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .badge {
+            background: var(--accent-color);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            margin-left: 5px;
+        }
+
+        /* Hero Section */
+        .empower-hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                        url('https://images.unsplash.com/photo-1587359859746-0e89b1f33436') center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 66px;
+        }
+
+        /* Programs Section */
+        .programs-section {
+            padding: 4rem 2rem;
+            background: #f8f8f8;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .program-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .program-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Resource Library */
+        .resources-section {
+            padding: 4rem 2rem;
+        }
+
+        .resource-filter {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--secondary-color);
+            border-radius: 30px;
+            background: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .resource-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .resource-info {
+            padding: 1.5rem;
+        }
+
+        .resource-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .crop-tag {
+            background: #e9f5e6;
+            color: var(--secondary-color);
+        }
+
+        .livestock-tag {
+            background: #f5eee6;
+            color: #8b5e34;
+        }
+
+        /* Training Calendar */
+        .calendar-section {
+            padding: 4rem 2rem;
+            background: #f8f8f8;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .calendar-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .calendar-date {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Success Stories */
+        .stories-section {
+            padding: 4rem 2rem;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .story-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .story-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .story-content {
+            padding: 1.5rem;
+        }
+
+        .story-role {
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        /* Footer - Consistent with Other Pages */
+        .footer {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 4rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-color);
+                flex-direction: column;
+                padding: 1rem;
+                text-align: center;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .nav-links.active {
+                max-height: 500px;
+                padding: 1rem;
+            }
+
+            .nav-links li {
+                margin: 0.5rem 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .resource-filter {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">AGRO FOR ALL</div>
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            <ul class="nav-links">
+                <li><a href="indexfarm.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="E-power.html">Empower</a></li>
+        <li><a href="F-registration.html">Register</a></li>
+                <li><a href="store.html">Store <span class="badge">Crops & Livestock</span></a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="empower-hero">
+        <div class="hero-content">
+            <h1>Farmer Empowerment Programs</h1>
+            <p>Equipping crop and livestock farmers with modern agricultural solutions</p>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs-section">
+        <div class="programs-grid">
+            <div class="program-card">
+                <i class="fas fa-seedling program-icon"></i>
+                <h3>Crop Farming Programs</h3>
+                <ul>
+                    <li>Smart Irrigation Workshops</li>
+                    <li>Organic Pest Control Training</li>
+                    <li>Soil Health Management</li>
+                    <li>Crop Rotation Strategies</li>
+                </ul>
+            </div>
+            <div class="program-card">
+                <i class="fas fa-paw program-icon"></i>
+                <h3>Livestock Programs</h3>
+                <ul>
+                    <li>Animal Nutrition Planning</li>
+                    <li>Disease Prevention Workshops</li>
+                    <li>Dairy Processing Training</li>
+                    <li>Pasture Management</li>
+                </ul>
+            </div>
+            <div class="program-card">
+                <i class="fas fa-chart-line program-icon"></i>
+                <h3>Business Development</h3>
+                <ul>
+                    <li>Market Access Strategies</li>
+                    <li>Financial Literacy Training</li>
+                    <li>Digital Marketing Workshops</li>
+                    <li>Cooperative Formation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resource Library -->
+    <section class="resources-section">
+        <h2 class="section-title">Learning Resources</h2>
+        <div class="resource-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="crop">Crop Farming</button>
+            <button class="filter-btn" data-filter="livestock">Livestock</button>
+        </div>
+        <div class="resource-grid">
+            <div class="resource-card" data-filter="crop">
+                <div class="resource-image" style="background-image: url('https://images.unsplash.com/photo-1625242429828-4f221583f295')"></div>
+                <div class="resource-info">
+                    <span class="resource-tag crop-tag">Crop Farming</span>
+                    <h4>Organic Farming Guide</h4>
+                    <p>Complete manual for sustainable crop production</p>
+                </div>
+            </div>
+            <div class="resource-card" data-filter="livestock">
+                <div class="resource-image" style="background-image: url('https://images.unsplash.com/photo-1553284965-83fd3e82fa5a')"></div>
+                <div class="resource-info">
+                    <span class="resource-tag livestock-tag">Livestock</span>
+                    <h4>Animal Health Handbook</h4>
+                    <p>Essential guide for livestock disease prevention</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Calendar -->
+    <section class="calendar-section">
+        <h2 class="section-title">Training Calendar</h2>
+        <div class="calendar-grid">
+            <div class="calendar-card">
+                <div class="calendar-date">July 15 - Crop Management</div>
+                <h4>Smart Irrigation Workshop</h4>
+                <p>Learn water-efficient farming techniques</p>
+            </div>
+            <div class="calendar-card">
+                <div class="calendar-date">July 22 - Livestock</div>
+                <h4>Dairy Processing Training</h4>
+                <p>Modern milk preservation methods</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="stories-section">
+        <h2 class="section-title">Success Stories</h2>
+        <div class="story-grid">
+            <div class="story-card">
+                <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1587359859746-0e89b1f33436')"></div>
+                <div class="story-content">
+                    <h4>From 1 Acre to 10 Hectares</h4>
+                    <p class="story-role">Crop Farmer</p>
+                    <p>"The training programs helped me scale my maize production sustainably."</p>
+                </div>
+            </div>
+            <div class="story-card">
+                <div class="story-image" style="background-image: url('https://images.unsplash.com/photo-1553284965-83fd3e82fa5a')"></div>
+                <div class="story-content">
+                    <h4>Dairy Production Success</h4>
+                    <p class="story-role">Livestock Farmer</p>
+                    <p>"Learned modern dairy processing that doubled my income."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Agro For All</h3>
+                <p>Empowering sustainable agriculture</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="indexfarm.html">Home</a></li>
+                    <li><a href="E-power.html">Programs</a></li>
+                    <li><a href="store.html">Marketplace</a></li>
+                    <li><a href="contact.html">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            const navContainer = document.querySelector('.nav-container');
+
+            mobileMenuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navLinks.classList.toggle('active');
+                mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!navContainer.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                }
+            });
+
+            // Resource Filter
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const resourceCards = document.querySelectorAll('.resource-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.dataset.filter;
+                    
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    resourceCards.forEach(card => {
+                        if(filter === 'all' || card.dataset.filter === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Smooth Scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
