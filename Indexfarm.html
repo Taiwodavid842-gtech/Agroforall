@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agro For All - Crop & Livestock Farmers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #3A5A40;
+      --secondary-color: #588157;
+      --accent-color: #DDA15E;
+      --text-dark: #2F3E46;
+      --text-light: #F8F9FA;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: var(--text-dark);
+    }
+
+    /* Navbar */
+    .navbar {
+      background: var(--primary-color);
+      color: var(--text-light);
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-light);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-color);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Market Ticker */
+    .market-ticker {
+      background: var(--secondary-color);
+      color: var(--text-light);
+      padding: 0.5rem;
+      position: fixed;
+      width: 100%;
+      top: 66px;
+      z-index: 999;
+    }
+
+    /* Hero Section */
+    .hero-slider {
+      height: 100vh;
+      position: relative;
+      margin-top: 106px;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      animation: slider 16s infinite;
+      opacity: 0;
+    }
+
+    .slide:nth-child(1) {
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                       url('https://images.unsplash.com/photo-1625242429828-4f221583f295');
+      animation-delay: 0s;
+    }
+
+    .slide:nth-child(2) {
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                       url('https://images.unsplash.com/photo-1551649001-7a0858b3f647');
+      animation-delay: 8s;
+    }
+
+    @keyframes slider {
+      0%, 100% { opacity: 0; }
+      12.5%, 37.5% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: var(--text-light);
+      padding: 0 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      margin: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--accent-color);
+      color: var(--text-light);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(221,161,94,0.3);
+    }
+
+    .btn-secondary {
+      border: 2px solid var(--text-light);
+      color: var(--text-light);
+    }
+
+    .btn-secondary:hover {
+      background: var(--text-light);
+      color: var(--primary-color);
+    }
+
+    /* Sections */
+    .section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    /* How It Works */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .step {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+
+    .step:hover {
+      transform: translateY(-10px);
+    }
+
+    .dual-icon {
+      position: relative;
+      width: 3rem;
+      height: 3rem;
+      margin: 0 auto 1rem;
+    }
+
+    .dual-icon i {
+      position: absolute;
+      font-size: 2rem;
+    }
+
+    .dual-icon i:last-child {
+      right: -50%;
+      bottom: -20%;
+      font-size: 1.5rem;
+      color: var(--accent-color);
+    }
+
+    /* Farming Types */
+    .farm-types {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .farm-card {
+      padding: 2rem;
+      border-radius: 15px;
+      background: white;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .farm-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .farm-card ul {
+      list-style: none;
+    }
+
+    .farm-card li {
+      margin: 0.8rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Product Grid */
+    .product-filter {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .filter-btn {
+      padding: 0.8rem 1.5rem;
+      border: 2px solid var(--secondary-color);
+      border-radius: 30px;
+      background: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn.active {
+      background: var(--secondary-color);
+      color: white;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-item {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .product-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 1rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--primary-color);
+      color: var(--text-light);
+      padding: 4rem 2rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: var(--text-light);
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: var(--accent-color);
+    }
+
+    .badge {
+      background: var(--accent-color);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      margin-left: 5px;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--primary-color);
+        flex-direction: column;
+        padding: 1rem;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      .nav-links.active {
+        max-height: 500px;
+        padding: 1rem;
+      }
+
+      .nav-links li {
+        margin: 0.5rem 0;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .market-ticker {
+        top: 66px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="logo">AGRO FOR ALL</div>
+      <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+      <ul class="nav-links">
+        <li><a href="indexfarm.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="E-power.html">Empower Farmers</a></li>
+        <li><a href="F-registration.html">Register</a></li>
+        <li><a href="store.html">Store <span class="badge">Crops & Livestock</span></a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Market Ticker -->
+  <div class="market-ticker">
+    <marquee>
+      🚜 Live Market Prices: Maize $1.20/kg | Goats $85 | Eggs $0.25/unit | Tomatoes $0.80/kg
+    </marquee>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero-slider">
+    <div class="slide"></div>
+    <div class="slide"></div>
+    <div class="hero-content">
+      <h1>Empowering Crop & Livestock Farmers</h1>
+      <p>Connect, Learn, and Sell - From Fields to Livestock Markets</p>
+      <div class="cta-buttons">
+        <a href="F-registration.html" class="btn btn-primary">Register Farm</a>
+        <a href="store.html" class="btn btn-secondary">Buy Crops/Livestock</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- How It Works -->
+  <section class="section" id="about">
+    <div class="section-title">
+      <h2>Our Process</h2>
+      <p>Three steps to successful farming</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="dual-icon">
+          <i class="fas fa-seedling"></i>
+          <i class="fas fa-paw"></i>
+        </div>
+        <h3>Register Your Operation</h3>
+        <p>Join our network of crop and livestock farmers</p>
+      </div>
+      <div class="step">
+        <div class="dual-icon">
+          <i class="fas fa-book-open"></i>
+          <i class="fas fa-syringe"></i>
+        </div>
+        <h3>Learn & Grow</h3>
+        <p>Access farming guides and veterinary resources</p>
+      </div>
+      <div class="step">
+        <div class="dual-icon">
+          <i class="fas fa-shopping-cart"></i>
+          <i class="fas fa-coins"></i>
+        </div>
+        <h3>Sell & Earn</h3>
+        <p>Market your harvest or livestock directly to buyers</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Farming Types -->
+  <section class="section" id="farming-types">
+    <div class="section-title">
+      <h2>We Support All Farmers</h2>
+    </div>
+    <div class="farm-types">
+      <div class="farm-card crop-card">
+        <h3>Crop Farmers</h3>
+        <ul>
+          <li>📈 Real-time market prices</li>
+          <li>🌱 Premium seed access</li>
+          <li>🌧️ Weather advisory alerts</li>
+          <li>📅 Harvest planning tools</li>
+        </ul>
+      </div>
+      <div class="farm-card livestock-card">
+        <h3>Livestock Farmers</h3>
+        <ul>
+          <li>🐄 Veterinary support</li>
+          <li>🥛 Dairy processing guides</li>
+          <li>📊 Feed cost calculator</li>
+          <li>🏷️ Livestock tagging system</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="section" id="products">
+    <div class="section-title">
+      <h2>Featured Listings</h2>
+    </div>
+    <div class="product-filter">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="crops">Crops</button>
+      <button class="filter-btn" data-filter="livestock">Livestock</button>
+    </div>
+    <div class="product-grid">
+      <div class="product-item" data-filter="crops">
+        <img src="https://images.unsplash.com/photo-1570042225831-d98fa757d08b" alt="Maize">
+        <div class="product-info">
+          <h4>Organic Maize</h4>
+          <p>$1.20/kg</p>
+        </div>
+      </div>
+      <div class="product-item" data-filter="livestock">
+        <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a" alt="Goats">
+        <div class="product-info">
+          <h4>Boer Goats</h4>
+          <p>$85 each</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Agro For All</h3>
+        <p>Empowering farmers since 2025</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="indexfarm.html">Home</a></li>
+          <li><a href="store.html">Marketplace</a></li>
+          <li><a href="E-power.html">Training Programs</a></li>
+          <li><a href="contact.html">Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect</h3>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Mobile Menu
+    document.addEventListener('DOMContentLoaded', () => {
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+      const navLinks = document.querySelector('.nav-links');
+
+      mobileMenuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+      });
+    });
+      </script>
+      </body>
+      </html>
+      
